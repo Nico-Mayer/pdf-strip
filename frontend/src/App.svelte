@@ -1,16 +1,24 @@
 <script lang="ts">
 	import Navbar from './lib/Navbar.svelte'
 	import FileInput from './lib/FileInput.svelte'
-	/* import { Greet } from '../wailsjs/go/main/App.js'
+	import Sidebar from './lib/Sidebar/Sidebar.svelte'
+	import Editor from './lib/Editor.svelte'
+	import { files, currentFile } from './stores/store'
 
-	function greet(): void {
-		Greet(name).then((result) => (resultText = result))
-	} */
+	$: console.log($files)
+	$: console.log($currentFile)
 </script>
 
 <main class="h-screen w-screen flex-col flex">
 	<Navbar />
-	<div class="flex justify-center items-center flex-1">
-		<FileInput />
-	</div>
+
+	<section class="flex w-full h-full">
+		<Sidebar files={$files} />
+
+		{#if !$files || $files.length === 0}
+			<FileInput />
+		{:else}
+			<Editor />
+		{/if}
+	</section>
 </main>
