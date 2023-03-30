@@ -1,27 +1,18 @@
 <script lang="ts">
-	import { files } from '../stores/store'
+	import { filePaths } from '../stores/store'
 	import { OpenFile } from '../../wailsjs/go/main/App'
 
-	function handleFileChange(event) {
-		const fileList: FileList = event.target.files
-		const fileArray = Array.from(fileList)
-		files.set(fileArray)
-	}
 	async function handleClick() {
-		let test = await OpenFile()
-		console.log(test)
+		const path = await OpenFile()
+		const oldPaths = $filePaths
+		console.log(oldPaths)
+		$filePaths = [...oldPaths, path]
 	}
 </script>
 
 <main class="flex flex-col justify-center items-center gap-10">
 	<div class="h-64 w-64 dots rounded-xl">568×320</div>
 	<button on:click={handleClick}>Open</button>
-
-	{#if files && files[0]}
-		<p>
-			{files[0].name}
-		</p>
-	{/if}
 </main>
 
 <style scoped>

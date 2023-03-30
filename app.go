@@ -28,9 +28,10 @@ func (a *App) startup(ctx context.Context) {
 func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
 }
+
 func (a *App) OpenFile() string {
-	result, _ := runtime.OpenFileDialog(a.ctx, runtime.OpenDialogOptions{
+	filePath, _ := runtime.OpenFileDialog(a.ctx, runtime.OpenDialogOptions{
 		Title: "It's your turn!",
 	})
-	return result
+	return filePath
 }
