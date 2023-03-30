@@ -1,16 +1,24 @@
-# README
+# Meta-Strip
 
-## About
+Meta-Strip is a simple and easy-to-use application that allows you to remove metadata from your files. With Meta-Strip, you can strip away sensitive information that is embedded in your files, such as location data, timestamps, and other identifying information.
 
-This is the official Wails Svelte-TS template.
+## Features
 
-## Live Development
+Supports a variety of file formats, including images, documents, and videos.
+Easy-to-use interface for removing metadata in just a few clicks.
+Securely deletes metadata, ensuring it cannot be recovered.
+Increases privacy and security when sharing files online.
+Installation
+To install Meta-Strip, simply download the latest release from the GitHub repository and run the installer. Meta-Strip is available for Windows, Mac, and Linux.
 
-To run in live development mode, run `wails dev` in the project directory. This will run a Vite development
-server that will provide very fast hot reload of your frontend changes. If you want to develop in a browser
-and have access to your Go methods, there is also a dev server that runs on http://localhost:34115. Connect
-to this in your browser, and you can call your Go code from devtools.
+## Usage
 
-## Building
+To use Meta-Strip, simply open the application and drag-and-drop the files you wish to strip metadata from into the interface. You can then choose which metadata fields to remove and click the "Strip Metadata" button to remove the selected information.
 
-To build a redistributable, production mode package, use `wails build`.
+## License
+
+Meta-Strip is released under the MIT License. See the LICENSE file for more information.
+
+## Feedback
+
+If you have any feedback, bug reports, or feature requests, please open an issue on the GitHub repository.
