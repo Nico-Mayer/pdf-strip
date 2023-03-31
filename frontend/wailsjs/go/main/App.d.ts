@@ -3,4 +3,6 @@
 
 export function Greet(arg1:string):Promise<string>;
 
+export function Metadata(arg1:string):Promise<string>;
+
 export function OpenFiles():Promise<Array<string>>;
