@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io/fs"
 	"os"
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
@@ -49,18 +50,15 @@ func (a *App) OpenFiles() []string {
 	return filePath
 }
 
-func (a *App) Metadata(path string) string {
-	//The file has to be opened first
-	f, _ := os.Open(path)
-	// The file descriptor (File*) has to be used to get metadata
-	fi, err := f.Stat()
-	// The file can be closed
-	f.Close()
+func (a *App) Metadata(path string) fs.FileInfo {
+
+	fileInfo, err := os.Stat(path)
+
 	if err != nil {
 		fmt.Println(err)
-		return "metadata"
+		return nil
 	}
-	// fi is a fileInfo interface returned by Stat
-	fmt.Println(fi)
-	return "metadata"
+
+	fmt.Println("File metadata:", fileInfo)
+	return fileInfo
 }

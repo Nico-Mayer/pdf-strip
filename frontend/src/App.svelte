@@ -6,7 +6,7 @@
 	import { filePaths } from './stores/store'
 </script>
 
-<main class="h-screen w-screen flex-col flex">
+<main class="h-screen w-screen flex-col flex overflow-hidden">
 	<Navbar />
 
 	<section class="flex w-full h-full">
