@@ -3,4 +3,4 @@
 
 export function Greet(arg1:string):Promise<string>;
 
-export function OpenFile():Promise<string>;
+export function OpenFiles():Promise<Array<string>>;

@@ -1,12 +1,14 @@
 <script lang="ts">
-	import { filePaths } from '../stores/store'
-	import { OpenFile } from '../../wailsjs/go/main/App'
+	import { filePaths, currentFile } from '../stores/store'
+	import { getNameFromPath, getFilePaths } from '../utils'
 
 	async function handleClick() {
-		const path = await OpenFile()
-		const oldPaths = $filePaths
-		console.log(oldPaths)
-		$filePaths = [...oldPaths, path]
+		const paths = await getFilePaths()
+		filePaths.add(paths)
+		$currentFile = {
+			path: paths[0],
+			name: getNameFromPath(paths[0]),
+		}
 	}
 </script>
 

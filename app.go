@@ -29,9 +29,22 @@ func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
 }
 
-func (a *App) OpenFile() string {
-	filePath, _ := runtime.OpenFileDialog(a.ctx, runtime.OpenDialogOptions{
-		Title: "It's your turn!",
+func (a *App) OpenFiles() []string {
+
+	filePath, _ := runtime.OpenMultipleFilesDialog(a.ctx, runtime.OpenDialogOptions{
+		//DefaultDirectory:           string,
+		//DefaultFilename  :          string,
+		Title: "Choose PDF file",
+		Filters: []runtime.FileFilter{
+			{
+				DisplayName: "PDF (*.pdf)",
+				Pattern:     "*.pdf",
+			},
+		},
+		ShowHiddenFiles:            false,
+		CanCreateDirectories:       false,
+		ResolvesAliases:            true,
+		TreatPackagesAsDirectories: false,
 	})
 	return filePath
 }

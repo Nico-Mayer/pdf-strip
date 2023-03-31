@@ -2,6 +2,6 @@
 	import Breadcrumbs from './Breadcrumbs.svelte'
 </script>
 
-<main class="p-2">
+<main class="px-2">
 	<Breadcrumbs />
 </main>

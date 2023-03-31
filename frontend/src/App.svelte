@@ -12,7 +12,7 @@
 	<section class="flex w-full h-full">
 		<Sidebar />
 
-		{#if !$filePaths || $filePaths.length === 0}
+		{#if !$filePaths || $filePaths.size === 0}
 			<FileInput />
 		{:else}
 			<Editor />

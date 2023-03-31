@@ -6,6 +6,6 @@ export function Greet(arg1) {
   return window['go']['main']['App']['Greet'](arg1);
 }
 
-export function OpenFile() {
-  return window['go']['main']['App']['OpenFile']();
+export function OpenFiles() {
+  return window['go']['main']['App']['OpenFiles']();
 }

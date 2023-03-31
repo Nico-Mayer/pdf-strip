@@ -1,6 +1,12 @@
-<div class="navbar bg-base-200">
+<div class="navbar bg-base-200 px-4">
 	<div class="flex-1">
-		<a href="/" class="btn btn-ghost normal-case text-xl">Meta Strip</a>
+		<button class="btn btn-ghost normal-case text-2xl">
+			<div
+				class="font-title text-primary inline-flex  transition-all duration-200 text-3xl">
+				<span class="text-primary">Meta </span>
+				<span class="text-base-content">Strip</span>
+			</div>
+		</button>
 	</div>
 	<div class="flex-none">
 		<button class="btn btn-square btn-ghost">
