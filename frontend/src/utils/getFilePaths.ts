@@ -1,4 +1,4 @@
-import { OpenFiles } from '../../wailsjs/go/main/App'
+import { OpenFiles } from '$go/App'
 
 export async function getFilePaths(): Promise<string[]> {
 	const res = await OpenFiles()

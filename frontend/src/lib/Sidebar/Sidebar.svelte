@@ -1,7 +1,7 @@
 <script lang="ts">
 	import SideBtn from './SideBtn.svelte'
-	import { filePaths } from '../../stores/store'
-	import { getFilePaths } from '../../utils'
+	import { filePaths } from '$stores/store'
+	import { getFilePaths } from '$utils'
 
 	async function handleClick() {
 		const paths = await getFilePaths()

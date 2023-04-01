@@ -10,22 +10,20 @@
 		"**/.project": true,
 		"**/.settings": true,
 		"**/.factorypath": true,
-		"wails.json": true,
 		"go.mod": true,
 		"build": true,
 		".vscode": true,
 		"frontend/dist": true,
-		"frontend/node_modules": true,
-		"frontend/package.json.md5": true
+		"frontend/package.json.md5": true,
+		"frontend/node_modules": true
 	},
 	"hide-files.files": [
-		"wails.json",
 		"go.mod",
 		"build",
 		".vscode",
 		"frontend/dist",
-		"frontend/node_modules",
-		"frontend/package.json.md5"
+		"frontend/package.json.md5",
+		"frontend/node_modules"
 	],
 	"cSpell.words": ["wailsapp", "wailsjs"]
 }

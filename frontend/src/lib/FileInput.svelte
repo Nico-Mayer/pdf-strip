@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { filePaths, currentFile } from '../stores/store'
-	import { getNameFromPath, getFilePaths } from '../utils'
+	import { filePaths, currentFile } from '$stores/store'
+	import { getNameFromPath, getFilePaths } from '$utils'
 
 	async function handleClick() {
 		const paths = await getFilePaths()

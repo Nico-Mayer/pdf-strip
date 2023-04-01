@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { currentFile, filePaths } from '../../stores/store'
-	import type { FileData } from '../../types'
-	import { getNameFromPath } from '../../utils'
+	import { currentFile, filePaths } from '$stores/store'
+	import type { FileData } from '$types'
+	import { getNameFromPath } from '$utils'
 
 	export let path = null
 

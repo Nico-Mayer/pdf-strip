@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { currentFile } from '../../stores/store'
+	import { currentFile } from '$stores/store'
 
 	$: currentPath = $currentFile?.path
 	$: fileName = $currentFile?.name

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
-	import { Metadata } from '../../../wailsjs/go/main/App'
+	import { Metadata } from '$go/App'
 	import Breadcrumbs from './Breadcrumbs.svelte'
-	import { currentFile } from '../../stores/store'
-	import type { FileInfo } from 'src/types/fileInfo'
+	import { currentFile } from '$stores/store'
+	import type { FileInfo } from '$types'
 
 	let metadata: FileInfo[] = null
 
@@ -18,7 +18,7 @@
 
 	<section>
 		<div>
-			<span>{metadata?.CreationTime.LowDateTime}</span>
+			<span>GG</span>
 		</div>
 	</section>
 </main>
