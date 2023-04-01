@@ -11,5 +11,6 @@ export default {
 			// Select the icon collections you want to use
 			collections: getIconCollections(['mdi']),
 		}),
+		require('@tailwindcss/typography'),
 	],
 }
