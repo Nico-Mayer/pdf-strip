@@ -1,8 +1,9 @@
 import { writable } from 'svelte/store'
-import type { Writable } from 'svelte/store'
 import type { FileData } from '../types'
+import { getNameFromPath } from '$utils'
 
 export const filePaths = createPathStore()
+export const currentFile = createCurrFileStore()
 
 function createPathStore() {
 	const { subscribe, set, update } = writable<Set<string>>(new Set([]))
@@ -32,9 +33,33 @@ function createPathStore() {
 	}
 }
 
-export const currentFile: Writable<FileData> = writable({
-	path: '',
-	name: '',
-	isDirectory: false,
-	isFile: true,
-} as FileData)
+function createCurrFileStore() {
+	const { subscribe, set, update } = writable<FileData>({
+		path: '',
+		name: '',
+		isDirectory: false,
+		isFile: true,
+	} as FileData)
+
+	return {
+		subscribe,
+		pick: (path: string) => {
+			update(() => {
+				const newFile: FileData = {
+					path: path,
+					name: getNameFromPath(path),
+					isDirectory: false,
+					isFile: true,
+				}
+				return newFile
+			})
+		},
+		reset: () =>
+			set({
+				path: '',
+				name: '',
+				isDirectory: false,
+				isFile: true,
+			} as FileData),
+	}
+}

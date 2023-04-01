@@ -1,10 +1,13 @@
 <script lang="ts">
 	import SideBtn from './SideBtn.svelte'
-	import { filePaths } from '$stores/store'
+	import { filePaths, currentFile } from '$stores/store'
 	import { getFilePaths } from '$utils'
 
 	async function handleClick() {
 		const paths = await getFilePaths()
+		if ($filePaths.size === 0) {
+			currentFile.pick(paths[0])
+		}
 		filePaths.add(paths)
 	}
 </script>
@@ -22,6 +25,7 @@
 				<SideBtn {path} />
 			{/each}
 		</ul>
-		<button class="btn btn-primary mt-4" on:click={handleClick}>Add</button>
+		<button class="btn btn-primary mt-4" on:click={handleClick}
+			>open</button>
 	</section>
 </main>

@@ -6,6 +6,8 @@ import (
 	"io/fs"
 	"os"
 
+	"github.com/pdfcpu/pdfcpu/pkg/api"
+	"github.com/pdfcpu/pdfcpu/pkg/pdfcpu/model"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
@@ -61,4 +63,15 @@ func (a *App) Metadata(path string) fs.FileInfo {
 
 	fmt.Println("File metadata:", fileInfo)
 	return fileInfo
+}
+
+func (a *App) Encrypt(path string, userPW string, ownerPW string) bool {
+	conf := model.NewAESConfiguration(userPW, ownerPW, 256)
+	err := api.EncryptFile(path, "", conf)
+
+	if err != nil {
+		fmt.Println(err)
+		return false
+	}
+	return true
 }

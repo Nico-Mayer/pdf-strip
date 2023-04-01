@@ -6,7 +6,7 @@
 </script>
 
 <main
-	class="h-screen w-screen overflow-hidden flex min-h-[768px] min-w-[1024px]">
+	class="h-screen w-screen overflow-hidden flex min-h-[600px] min-w-[900px]">
 	<Sidebar />
 
 	{#if $filePaths.size <= 0}

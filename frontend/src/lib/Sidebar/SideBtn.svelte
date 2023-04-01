@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { currentFile, filePaths } from '$stores/store'
-	import type { FileData } from '$types'
 	import { getNameFromPath } from '$utils'
 
 	export let path = null
@@ -8,19 +7,13 @@
 	$: active = $currentFile.path === path
 
 	function setCurrentFile() {
-		currentFile.set({
-			path: path,
-			name: getNameFromPath(path),
-		} as FileData)
+		currentFile.pick(path)
 	}
 	function handleClose() {
 		filePaths.remove(path)
 		if ($filePaths.size > 0) {
 			const firstPath = [...$filePaths][0]
-			currentFile.set({
-				path: firstPath,
-				name: getNameFromPath(firstPath),
-			} as FileData)
+			currentFile.pick(firstPath)
 		}
 	}
 </script>
