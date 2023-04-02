@@ -12,7 +12,7 @@
 	}
 </script>
 
-<div class="text-base breadcrumbs overflow-x-auto hide-scrollbar">
+<div class="text-base breadcrumbs overflow-x-auto hide-scrollbar flex-shrink-0">
 	<ul>
 		{#each breadcrumbs as breadcrumb, index}
 			<li>

@@ -2,7 +2,7 @@
 	import Breadcrumbs from './Breadcrumbs.svelte'
 	import { currentFile } from '$stores/store'
 	import { IsEncrypted } from '$go/App'
-
+	import Compression from '$lib/Editor/Views/Compression/Compression.svelte'
 	import Encryption from '$lib/Editor/Views/Encryption/Encryption.svelte'
 
 	let isEncrypted = false
@@ -14,10 +14,11 @@
 	}
 </script>
 
-<main class="px-4 flex-1 flex flex-col overflow-x-hidden">
+<main
+	class="px-4 flex-1 flex flex-col overflow-x-hidden overflow-y-auto pb-4 hide-scrollbar">
 	<Breadcrumbs />
 
-	<section class="flex items-cente gap-4">
+	<section class="flex items-cente gap-4 mb-2">
 		<div class="prose flex items-center gap-4">
 			<div class="indicator">
 				{#if isEncrypted}
@@ -35,5 +36,7 @@
 		<div class="flex items-center" />
 	</section>
 
+	<Compression />
+	<div class="divider" />
 	<Encryption {isEncrypted} on:checkStatus={checkIfEncrypted} />
 </main>

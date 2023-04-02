@@ -4,7 +4,7 @@
 	import { createEventDispatcher } from 'svelte'
 	import { toast } from 'svelte-french-toast'
 
-	export let isEncrypted: boolean
+	export let isEncrypted: boolean = false
 
 	const dispatch = createEventDispatcher()
 	let pw = ''
