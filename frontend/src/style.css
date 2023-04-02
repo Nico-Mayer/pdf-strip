@@ -23,3 +23,22 @@ body {
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
 }
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	@apply bg-base-200;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	@apply bg-base-300;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	@apply bg-base-100;
+}
