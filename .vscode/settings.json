@@ -25,5 +25,13 @@
 		"frontend/node_modules",
 		"go.mod"
 	],
-	"cSpell.words": ["Maximise", "minimise", "pdfcpu", "wailsapp", "wailsjs"]
+	"cSpell.words": [
+		"assetserver",
+		"Colour",
+		"Maximise",
+		"minimise",
+		"pdfcpu",
+		"wailsapp",
+		"wailsjs"
+	]
 }
