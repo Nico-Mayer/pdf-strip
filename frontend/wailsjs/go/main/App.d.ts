@@ -8,6 +8,8 @@ export function Encrypt(arg1:string,arg2:string,arg3:string):Promise<boolean>;
 
 export function Greet(arg1:string):Promise<string>;
 
+export function IsEncrypted(arg1:string):Promise<boolean>;
+
 export function Metadata(arg1:string):Promise<fs.FileInfo>;
 
 export function OpenFiles():Promise<Array<string>>;

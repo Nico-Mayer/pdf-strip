@@ -93,3 +93,15 @@ func (a *App) Decrypt(path string, pw string, owner bool) bool {
 	return true
 
 }
+
+func (a *App) IsEncrypted(path string) bool {
+	config := model.NewDefaultConfiguration()
+	err := api.ValidateFile(path, config)
+
+	if err != nil {
+		fmt.Println("Is Encrypted", err)
+		return true
+	}
+	return false
+
+}

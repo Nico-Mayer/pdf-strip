@@ -2,6 +2,8 @@
 	import Encrypt from './Encrypt.svelte'
 	import { editorOptions } from '$stores/store'
 	import Decrypt from './Decrypt.svelte'
+
+	export let isEncrypted: boolean
 </script>
 
 <div
@@ -9,8 +11,8 @@
 	<input type="checkbox" bind:checked={$editorOptions.encryptionOpen} />
 	<div class="collapse-title text-xl font-medium">Encryption</div>
 	<div class="collapse-content">
-		<Encrypt />
+		<Encrypt {isEncrypted} on:checkStatus />
 		<div class="divider" />
-		<Decrypt />
+		<Decrypt {isEncrypted} on:checkStatus />
 	</div>
 </div>
