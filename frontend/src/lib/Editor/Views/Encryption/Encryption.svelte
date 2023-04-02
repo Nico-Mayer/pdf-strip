@@ -12,7 +12,7 @@
 	<div class="collapse-title text-xl font-medium">Encryption</div>
 	<div class="collapse-content">
 		<Encrypt on:checkStatus {isEncrypted} />
-		<div class="divider" />
+		<div class="divider flex-shrink-0" />
 		<Decrypt on:checkStatus {isEncrypted} />
 	</div>
 </div>

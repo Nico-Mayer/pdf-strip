@@ -12,4 +12,6 @@ export function IsEncrypted(arg1:string):Promise<boolean>;
 
 export function Metadata(arg1:string):Promise<fs.FileInfo>;
 
+export function OpenDir():Promise<string>;
+
 export function OpenFiles():Promise<Array<string>>;

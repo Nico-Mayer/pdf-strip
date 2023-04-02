@@ -15,8 +15,7 @@
 		"frontend/dist": true,
 		"frontend/package.json.md5": true,
 		"frontend/node_modules": true,
-		"go.mod": true,
-		"wails.json": true
+		"go.mod": true
 	},
 	"hide-files.files": [
 		"build",
@@ -24,8 +23,7 @@
 		"frontend/dist",
 		"frontend/package.json.md5",
 		"frontend/node_modules",
-		"go.mod",
-		"wails.json"
+		"go.mod"
 	],
-	"cSpell.words": ["pdfcpu", "wailsapp", "wailsjs"]
+	"cSpell.words": ["Maximise", "minimise", "pdfcpu", "wailsapp", "wailsjs"]
 }

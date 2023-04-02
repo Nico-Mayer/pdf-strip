@@ -15,7 +15,7 @@
 </script>
 
 <main
-	class="px-4 flex-1 flex flex-col overflow-x-hidden overflow-y-auto pb-4 hide-scrollbar">
+	class="px-4 flex-1 flex flex-col overflow-x-hidden overflow-y-auto pb-4 hide-scrollbar xl:max-w-7xl">
 	<Breadcrumbs />
 
 	<section class="flex items-cente gap-4 mb-2">
@@ -37,6 +37,6 @@
 	</section>
 
 	<Compression />
-	<div class="divider" />
+	<div class="divider flex-shrink-0" />
 	<Encryption {isEncrypted} on:checkStatus={checkIfEncrypted} />
 </main>

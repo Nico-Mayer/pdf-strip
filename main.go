@@ -18,13 +18,15 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:  "meta-strip",
-		Width:  1024,
-		Height: 768,
+		Title:     "PDF Strip",
+		Width:     1024,
+		Height:    768,
+		MinWidth:  520,
+		MinHeight: 520,
 		Mac: &mac.Options{
 			TitleBar: mac.TitleBarDefault(),
 		},
-
+		Frameless: true,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},

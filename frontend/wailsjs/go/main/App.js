@@ -22,6 +22,10 @@ export function Metadata(arg1) {
   return window['go']['main']['App']['Metadata'](arg1);
 }
 
+export function OpenDir() {
+  return window['go']['main']['App']['OpenDir']();
+}
+
 export function OpenFiles() {
   return window['go']['main']['App']['OpenFiles']();
 }

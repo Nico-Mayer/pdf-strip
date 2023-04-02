@@ -12,8 +12,8 @@
 	}
 </script>
 
-<main class="flex flex-col h-full w-80 bg-base-200">
-	<section class="p-4 prose">
+<main class="flex flex-col w-80 bg-base-200">
+	<section class="px-4 pb-4 prose">
 		<h1 class="px-4 text-primary text-3xl">
 			PDF <span class="text-base-content">Strip</span>
 		</h1>

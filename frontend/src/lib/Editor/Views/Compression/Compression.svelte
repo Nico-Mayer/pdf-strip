@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { editorOptions } from '$stores/store'
+	import { OpenDir } from '$go/App'
 
 	let compressionLevel = 25
 	let saveAsCopy = false
+	let safeTo = ''
 
 	$: level =
 		compressionLevel === 25
@@ -12,6 +14,14 @@
 			: compressionLevel === 75
 			? 'high'
 			: 'ultra'
+
+	$: submittable = (safeTo.length > 0 && saveAsCopy) || !saveAsCopy
+	$: console.log(submittable)
+
+	async function chooseDir() {
+		const path = await OpenDir()
+		safeTo = path
+	}
 </script>
 
 <div
@@ -45,22 +55,26 @@
 				<span>|</span>
 			</div>
 
-			<div class="flex gap-4">
-				<input
-					type="checkbox"
-					class="toggle"
-					bind:checked={saveAsCopy} />
-				<span>Save as Copy</span>
-
-				{#if saveAsCopy}
+			<div class="flex gap-4 items-center">
+				<div class="flex flex-col gap-2 flex-shrink-0">
+					<span>Save as Copy</span>
 					<input
-						type="text"
-						class="input input-bordered"
-						placeholder="Filename" />
-				{/if}
+						type="checkbox"
+						class="toggle toggle-success"
+						bind:checked={saveAsCopy} />
+				</div>
+
+				<input
+					type="text"
+					readonly
+					on:click={chooseDir}
+					class="input input-success visible w-full"
+					placeholder="Choose a directory"
+					class:invisible={!saveAsCopy}
+					bind:value={safeTo} />
 			</div>
 
-			<button class="btn"> Compress </button>
+			<button class="btn" disabled={!submittable}> Compress </button>
 		</section>
 	</div>
 </div>

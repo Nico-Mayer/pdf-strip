@@ -34,7 +34,7 @@ func (a *App) Greet(name string) string {
 }
 
 func (a *App) OpenFiles() []string {
-	filePath, _ := runtime.OpenMultipleFilesDialog(a.ctx, runtime.OpenDialogOptions{
+	filePath, err := runtime.OpenMultipleFilesDialog(a.ctx, runtime.OpenDialogOptions{
 		//DefaultDirectory:           string,
 		//DefaultFilename  :          string,
 		Title: "Choose PDF file",
@@ -49,7 +49,36 @@ func (a *App) OpenFiles() []string {
 		ResolvesAliases:            true,
 		TreatPackagesAsDirectories: false,
 	})
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
 	return filePath
+}
+
+func (a *App) OpenDir() string {
+	dirPath, err := runtime.OpenDirectoryDialog(a.ctx, runtime.OpenDialogOptions{
+		//DefaultDirectory:           string,
+		//DefaultFilename  :          string,
+		Title: "Choose Directory",
+		/* Filters: []runtime.FileFilter{
+			{
+				DisplayName: "PDF (*.pdf)",
+				Pattern:     "*.pdf",
+			},
+		}, */
+		ShowHiddenFiles:            false,
+		CanCreateDirectories:       true,
+		ResolvesAliases:            true,
+		TreatPackagesAsDirectories: false,
+	})
+
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+	return dirPath
+
 }
 
 func (a *App) Metadata(path string) fs.FileInfo {

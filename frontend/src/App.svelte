@@ -4,15 +4,22 @@
 	import Editor from '$lib/Editor/Editor.svelte'
 	import { filePaths } from '$stores/store'
 	import { Toaster } from 'svelte-french-toast'
+	import Menubar from '$lib/Menubar.svelte'
 </script>
 
-<main class="h-screen w-screen overflow-hidden flex min-w-[900px]">
-	<Sidebar />
+<main class="h-screen flex-col w-screen flex">
+	<Menubar />
+	<section class="flex flex-1 w-screen min-w-[900px] overflow-hidden">
+		<Sidebar />
 
-	{#if $filePaths.size <= 0}
-		<FileInput />
-	{:else}
-		<Editor />
-	{/if}
+		<div class="flex flex-1 xl:justify-center">
+			{#if $filePaths.size <= 0}
+				<FileInput />
+			{:else}
+				<Editor />
+			{/if}
+		</div>
+	</section>
+
 	<Toaster />
 </main>
