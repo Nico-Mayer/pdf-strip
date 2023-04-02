@@ -75,3 +75,21 @@ func (a *App) Encrypt(path string, userPW string, ownerPW string) bool {
 	}
 	return true
 }
+
+func (a *App) Decrypt(path string, pw string, owner bool) bool {
+	var conf *model.Configuration
+
+	if owner {
+		conf = model.NewAESConfiguration("", pw, 256)
+	} else {
+		conf = model.NewAESConfiguration(pw, "", 256)
+	}
+
+	err := api.DecryptFile(path, "", conf)
+	if err != nil {
+		fmt.Println(err)
+		return false
+	}
+	return true
+
+}

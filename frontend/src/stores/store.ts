@@ -1,9 +1,12 @@
 import { writable } from 'svelte/store'
-import type { FileData } from '../types'
+import type { FileData, EditorOptions } from '$types'
 import { getNameFromPath } from '$utils'
 
 export const filePaths = createPathStore()
 export const currentFile = createCurrFileStore()
+export const editorOptions = writable<EditorOptions>({
+	encryptionOpen: false,
+})
 
 function createPathStore() {
 	const { subscribe, set, update } = writable<Set<string>>(new Set([]))
