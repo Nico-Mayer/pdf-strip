@@ -35,7 +35,7 @@
 	}
 </script>
 
-<main class="px-4 flex-1 flex flex-col">
+<main class="px-4 flex-1 flex flex-col overflow-x-hidden">
 	<Breadcrumbs />
 
 	<div class="prose">

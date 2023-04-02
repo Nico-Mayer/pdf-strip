@@ -5,8 +5,7 @@
 	import { filePaths } from '$stores/store'
 </script>
 
-<main
-	class="h-screen w-screen overflow-hidden flex min-h-[600px] min-w-[900px]">
+<main class="h-screen w-screen overflow-hidden flex min-w-[900px]">
 	<Sidebar />
 
 	{#if $filePaths.size <= 0}
