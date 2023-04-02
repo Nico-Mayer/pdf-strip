@@ -53,7 +53,7 @@
 					<input
 						bind:checked={showOwnerPW}
 						type="checkbox"
-						class="checkbox checkbox-primary" />
+						class="checkbox" />
 				</label>
 			</div>
 			{#if showOwnerPW}
