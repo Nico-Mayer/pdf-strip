@@ -56,7 +56,7 @@
 		class:opacity-30={isEncrypted}>
 		<div class="form-control">
 			<div class="flex items-center gap-2">
-				<div class="i-mdi-lock-outline w-6 h-6 text-success" />
+				<div class="i-mdi-lock w-6 h-6 text-success" />
 				<h1 class="font-semibold">Encrypt:</h1>
 			</div>
 

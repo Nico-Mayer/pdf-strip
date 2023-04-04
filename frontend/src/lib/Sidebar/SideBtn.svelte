@@ -10,18 +10,23 @@
 		currentFile.pick(path)
 	}
 	function handleClose() {
-		filePaths.remove(path)
-		if ($filePaths.size > 0) {
-			const firstPath = [...$filePaths][0]
-			currentFile.pick(firstPath)
+		if ($currentFile.path === path) {
+			let index = [...$filePaths].indexOf(path)
+			filePaths.remove(path)
+			if ($filePaths.size > 0) {
+				if (index === 0) index = 1
+				currentFile.pick([...$filePaths][index - 1])
+			}
+		} else {
+			filePaths.remove(path)
 		}
 	}
 </script>
 
 <button
-	class="btn-ghost btn w-full gap-2 justify-start flex-nowrap group"
+	class="btn w-full gap-2 justify-start flex-nowrap group"
 	on:click={setCurrentFile}
-	class:btn-active={active}>
+	class:btn-ghost={!active}>
 	<div class="i-mdi-file-pdf icon" />
 
 	<p class="truncate flex-1 text-start">{getNameFromPath(path)}</p>

@@ -6,8 +6,14 @@
 	import Encryption from '$lib/Editor/Views/Encryption/Encryption.svelte'
 
 	let isEncrypted = false
+	let container: HTMLElement
 
-	$: $currentFile, checkIfEncrypted()
+	$: $currentFile, handelFileChange()
+
+	async function handelFileChange() {
+		await checkIfEncrypted()
+		container.scrollTop = 0
+	}
 
 	async function checkIfEncrypted() {
 		isEncrypted = await IsEncrypted($currentFile.path)
@@ -15,7 +21,8 @@
 </script>
 
 <main
-	class="px-4 flex-1 flex flex-col overflow-x-hidden overflow-y-auto pb-4 hide-scrollbar xl:max-w-7xl">
+	class="px-4 flex-1 flex flex-col overflow-x-hidden overflow-y-auto pb-4 hide-scrollbar xl:max-w-7xl"
+	bind:this={container}>
 	<Breadcrumbs />
 
 	<section class="flex items-cente gap-4 mb-2">

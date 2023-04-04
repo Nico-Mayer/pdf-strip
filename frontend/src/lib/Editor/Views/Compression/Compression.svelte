@@ -16,7 +16,6 @@
 			: 'ultra'
 
 	$: submittable = (safeTo.length > 0 && saveAsCopy) || !saveAsCopy
-	$: console.log(submittable)
 
 	async function chooseDir() {
 		const path = await OpenDir()
@@ -27,7 +26,10 @@
 <div
 	class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box flex-shrink-0">
 	<input type="checkbox" bind:checked={$editorOptions.compressionOpen} />
-	<div class="collapse-title text-xl font-medium">Compression</div>
+	<div class="collapse-title text-xl font-medium flex items-center gap-2">
+		<div class="i-mdi-zip-box" />
+		<span> Compression</span>
+	</div>
 
 	<div class="collapse-content">
 		<section class="flex flex-col gap-4">

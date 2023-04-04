@@ -46,8 +46,7 @@
 		class:opacity-30={!isEncrypted}>
 		<div class="form-control">
 			<div class="flex items-center gap-2">
-				<div
-					class="i-mdi-lock-open-variant-outline w-6 h-6 text-warning" />
+				<div class="i-mdi-lock-open-variant w-6 h-6 text-warning" />
 				<h1 class="font-semibold">Decrypt:</h1>
 			</div>
 		</div>
