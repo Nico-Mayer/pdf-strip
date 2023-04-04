@@ -4,8 +4,6 @@
 	import { createEventDispatcher } from 'svelte'
 	import { toast } from 'svelte-french-toast'
 
-	export let encrypted: boolean = false
-
 	const dispatch = createEventDispatcher()
 	let pw = ''
 	let asOwner = true
@@ -20,8 +18,14 @@
 
 	async function handleDecrypt() {
 		if (!submittable) return
+		let decryptErr = false
 
-		const decryptErr = !(await Decrypt($currentFile.path, pw, asOwner))
+		try {
+			await Decrypt($currentFile.path, pw, asOwner)
+		} catch (err) {
+			decryptErr = true
+		}
+
 		if (decryptErr) {
 			toast.error('Provide valid password.', {
 				position: 'bottom-right',
@@ -39,24 +43,29 @@
 	}
 </script>
 
-<form on:submit|preventDefault={handleDecrypt}>
-	<fieldset
-		disabled={!encrypted}
-		class="gap-2 flex flex-col"
-		class:opacity-30={!encrypted}>
-		<div class="form-control">
-			<div class="flex items-center gap-2">
-				<div class="i-mdi-lock-open-variant w-6 h-6 text-warning" />
-				<h1 class="font-semibold">Decrypt:</h1>
-			</div>
-		</div>
+<div
+	class="border border-base-300 bg-base-200 rounded-box flex-shrink-0 shadow mt-4">
+	<div class="collapse-title text-xl font-medium flex items-center gap-2">
+		<div class="i-mdi-lock-open-variant w-6 h-6 text-warning" />
+		<h1 class="font-semibold">Decrypt:</h1>
+	</div>
 
-		<input
-			type="password"
-			bind:value={pw}
-			placeholder="Password"
-			class="input input-bordered w-full" />
+	<div class="px-4 py-1 text-sm">
+		<span>To edit this file, you must first decrypt it.</span>
+	</div>
 
-		<button class="btn" class:btn-disabled={!submittable}>Decrypt</button>
-	</fieldset>
-</form>
+	<div class="p-1">
+		<form
+			on:submit|preventDefault={handleDecrypt}
+			class="rounded-box border-base-200 gap-2 flex flex-col border p-2">
+			<input
+				type="password"
+				bind:value={pw}
+				placeholder="Password"
+				class="input input-bordered w-full" />
+
+			<button class="btn" class:btn-disabled={!submittable}
+				>Decrypt</button>
+		</form>
+	</div>
+</div>

@@ -24,7 +24,7 @@
 </script>
 
 <div
-	class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box flex-shrink-0">
+	class="collapse collapse-arrow border rounded-box flex-shrink-0 bg-base-200 border-base-300 shadow">
 	<input type="checkbox" bind:checked={$editorOptions.compressionOpen} />
 	<div class="collapse-title text-xl font-medium flex items-center gap-2">
 		<div class="i-mdi-zip-box" />

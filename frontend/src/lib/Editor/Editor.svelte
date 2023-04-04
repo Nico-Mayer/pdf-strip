@@ -5,6 +5,8 @@
 	import { currentFile } from '$stores/store'
 	import type { PdfInfo } from '$types'
 	import Breadcrumbs from './Breadcrumbs.svelte'
+	import Decrypt from '$lib/Editor/Views/Encryption/Decrypt.svelte'
+	import Info from './Info.svelte'
 
 	let info: PdfInfo
 	let container: HTMLElement
@@ -28,7 +30,7 @@
 	class="px-4 flex-1 flex flex-col overflow-x-hidden overflow-y-auto pb-4 hide-scrollbar xl:max-w-7xl"
 	bind:this={container}>
 	<Breadcrumbs />
-	<section class="flex items-cente gap-4 mb-2">
+	<section class="flex items-cente gap-4">
 		<div class="prose flex items-center gap-4">
 			<div class="indicator">
 				{#if encrypted}
@@ -47,13 +49,13 @@
 	</section>
 
 	{#if info && exists && !encrypted}
-		<section>
+		<Info {info} />
+		<section class="flex flex-col gap-4">
 			<Compression />
-			<div class="divider flex-shrink-0" />
-			<Encryption {encrypted} on:checkStatus={handelFileChange} />
+			<Encryption on:checkStatus={handelFileChange} />
 		</section>
 	{:else if exists && encrypted}
-		<section>Encrypted</section>
+		<Decrypt on:checkStatus={handelFileChange} />
 	{:else}
 		<section class="alert alert-error shadow-lg">
 			<div>

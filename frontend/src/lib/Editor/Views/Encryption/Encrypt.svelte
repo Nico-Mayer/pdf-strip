@@ -1,18 +1,22 @@
 <script lang="ts">
 	import { Encrypt } from '$go/App'
-	import { fade } from 'svelte/transition'
+	import { slide } from 'svelte/transition'
 	import { currentFile } from '$stores/store'
 	import toast from 'svelte-french-toast'
 	import { createEventDispatcher } from 'svelte'
 
-	export let encrypted: boolean = false
-
 	const dispatch = createEventDispatcher()
 	let provideUserPW = false
 	let newPW = ''
+	let confirmPW = ''
 	let userPW = ''
+	let confirmUserPW = ''
 
-	$: submittable = newPW.length > 0 && (!provideUserPW || userPW.length > 0)
+	$: submittable =
+		newPW.length > 0 &&
+		(!provideUserPW || userPW.length > 0) &&
+		newPW === confirmPW &&
+		(!provideUserPW || userPW === confirmUserPW)
 	$: $currentFile, reset()
 
 	function reset() {
@@ -24,11 +28,12 @@
 	async function handleEncrypt() {
 		if (!submittable) return
 		let showEncryptErr = false
+		if (!provideUserPW) userPW = newPW
 
-		if (provideUserPW) {
-			showEncryptErr = !(await Encrypt($currentFile.path, userPW, newPW))
-		} else {
-			showEncryptErr = !(await Encrypt($currentFile.path, newPW, newPW))
+		try {
+			await Encrypt($currentFile.path, userPW, newPW)
+		} catch (err) {
+			showEncryptErr = true
 		}
 
 		if (showEncryptErr) {
@@ -50,10 +55,7 @@
 </script>
 
 <form on:submit|preventDefault={handleEncrypt}>
-	<fieldset
-		class="flex gap-2 w-full flex-col"
-		disabled={encrypted}
-		class:opacity-30={encrypted}>
+	<fieldset class="flex gap-2 w-full flex-col">
 		<div class="form-control">
 			<div class="flex items-center gap-2">
 				<div class="i-mdi-lock w-6 h-6 text-success" />
@@ -69,19 +71,30 @@
 			</label>
 		</div>
 		{#if provideUserPW}
-			<input
-				transition:fade
-				bind:value={userPW}
-				type="password"
-				name="ownerPW"
-				placeholder="User password"
-				class="input input-bordered w-full" />
+			<div transition:slide class="flex flex-col gap-2">
+				<input
+					bind:value={userPW}
+					type="password"
+					placeholder="User Password"
+					class="input input-bordered w-full" />
+				<input
+					bind:value={confirmUserPW}
+					type="password"
+					placeholder="Confirm User Password"
+					class="input input-bordered w-full" />
+
+				<div class="divider my-1" />
+			</div>
 		{/if}
 		<input
 			type="password"
 			bind:value={newPW}
-			name="newPW"
-			placeholder="New password"
+			placeholder="Password"
+			class="input input-bordered w-full" />
+		<input
+			type="password"
+			bind:value={confirmPW}
+			placeholder="Confirm Password"
 			class="input input-bordered w-full" />
 
 		<button class="btn" class:btn-disabled={!submittable}>Encrypt</button>
