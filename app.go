@@ -3,11 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
-	"io/fs"
 	"os"
 
-	"github.com/pdfcpu/pdfcpu/pkg/api"
-	"github.com/pdfcpu/pdfcpu/pkg/pdfcpu/model"
+	"github.com/unidoc/unipdf/v3/model"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
@@ -81,56 +79,53 @@ func (a *App) OpenDir() string {
 
 }
 
-func (a *App) Metadata(path string) fs.FileInfo {
-
-	fileInfo, err := os.Stat(path)
-
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-
-	fmt.Println("File metadata:", fileInfo)
-	return fileInfo
-}
-
-func (a *App) Encrypt(path string, userPW string, ownerPW string) bool {
-	conf := model.NewAESConfiguration(userPW, ownerPW, 256)
-	err := api.EncryptFile(path, "", conf)
-
-	if err != nil {
-		fmt.Println(err)
-		return false
-	}
+func (a *App) Encrypt(path, userPW, ownerPW string) bool {
 	return true
 }
 
 func (a *App) Decrypt(path string, pw string, owner bool) bool {
-	var conf *model.Configuration
 
-	if owner {
-		conf = model.NewAESConfiguration("", pw, 256)
-	} else {
-		conf = model.NewAESConfiguration(pw, "", 256)
-	}
-
-	err := api.DecryptFile(path, "", conf)
-	if err != nil {
-		fmt.Println(err)
-		return false
-	}
 	return true
-
 }
 
-func (a *App) IsEncrypted(path string) bool {
-	config := model.NewDefaultConfiguration()
-	err := api.ValidateFile(path, config)
+type PdfProperties struct {
+	IsEncrypted bool
+	CanView     bool // Is the document viewable without password?
+	NumPages    int
+}
 
+func (a *App) GetPDFInfo(path string) (*PdfProperties, error) {
+	ret := PdfProperties{}
+	f, err := os.Open(path)
 	if err != nil {
-		fmt.Println("Is Encrypted", err)
-		return true
+		return nil, err
 	}
-	return false
+	defer f.Close()
+	pdfReader, err := model.NewPdfReader(f)
+	if err != nil {
+		return nil, err
+	}
+	isEncrypted, err := pdfReader.IsEncrypted()
+	if err != nil {
+		return nil, err
+	}
+	ret.IsEncrypted = isEncrypted
+	ret.CanView = true
 
+	// Try decrypting with an empty one.
+	if isEncrypted {
+		auth, err := pdfReader.Decrypt([]byte(""))
+		if err != nil {
+			return nil, err
+		}
+		ret.CanView = auth
+		return &ret, nil
+	}
+	numPages, err := pdfReader.GetNumPages()
+	if err != nil {
+		return nil, err
+	}
+	ret.NumPages = numPages
+
+	return &ret, nil
 }

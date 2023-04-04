@@ -10,16 +10,12 @@ export function Encrypt(arg1, arg2, arg3) {
   return window['go']['main']['App']['Encrypt'](arg1, arg2, arg3);
 }
 
+export function GetPDFInfo(arg1) {
+  return window['go']['main']['App']['GetPDFInfo'](arg1);
+}
+
 export function Greet(arg1) {
   return window['go']['main']['App']['Greet'](arg1);
-}
-
-export function IsEncrypted(arg1) {
-  return window['go']['main']['App']['IsEncrypted'](arg1);
-}
-
-export function Metadata(arg1) {
-  return window['go']['main']['App']['Metadata'](arg1);
 }
 
 export function OpenDir() {
