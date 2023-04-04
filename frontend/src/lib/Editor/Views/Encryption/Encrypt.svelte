@@ -5,7 +5,7 @@
 	import toast from 'svelte-french-toast'
 	import { createEventDispatcher } from 'svelte'
 
-	export let isEncrypted: boolean = false
+	export let encrypted: boolean = false
 
 	const dispatch = createEventDispatcher()
 	let provideUserPW = false
@@ -52,8 +52,8 @@
 <form on:submit|preventDefault={handleEncrypt}>
 	<fieldset
 		class="flex gap-2 w-full flex-col"
-		disabled={isEncrypted}
-		class:opacity-30={isEncrypted}>
+		disabled={encrypted}
+		class:opacity-30={encrypted}>
 		<div class="form-control">
 			<div class="flex items-center gap-2">
 				<div class="i-mdi-lock w-6 h-6 text-success" />

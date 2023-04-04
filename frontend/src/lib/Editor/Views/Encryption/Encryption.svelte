@@ -3,7 +3,7 @@
 	import { editorOptions } from '$stores/store'
 	import Decrypt from './Decrypt.svelte'
 
-	export let isEncrypted: boolean = false
+	export let encrypted: boolean = false
 </script>
 
 <div
@@ -14,8 +14,8 @@
 		<span>Encryption</span>
 	</div>
 	<div class="collapse-content">
-		<Encrypt on:checkStatus {isEncrypted} />
+		<Encrypt on:checkStatus {encrypted} />
 		<div class="divider flex-shrink-0" />
-		<Decrypt on:checkStatus {isEncrypted} />
+		<Decrypt on:checkStatus {encrypted} />
 	</div>
 </div>

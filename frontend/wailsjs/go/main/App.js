@@ -18,10 +18,6 @@ export function GetPDFInfo(arg1) {
   return window['go']['main']['App']['GetPDFInfo'](arg1);
 }
 
-export function Greet(arg1) {
-  return window['go']['main']['App']['Greet'](arg1);
-}
-
 export function OpenDir() {
   return window['go']['main']['App']['OpenDir']();
 }

@@ -2,11 +2,11 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"os"
 	goruntime "runtime"
 
-	"github.com/unidoc/unipdf/v3/model"
+	"github.com/pdfcpu/pdfcpu/pkg/api"
+	"github.com/pdfcpu/pdfcpu/pkg/pdfcpu/model"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
@@ -27,11 +27,6 @@ func (a *App) startup(ctx context.Context) {
 
 }
 
-// Greet returns a greeting for the given name
-func (a *App) Greet(name string) string {
-	return fmt.Sprintf("Hello %s, It's show time!", name)
-}
-
 func (a *App) OpenFiles() []string {
 	filePath, err := runtime.OpenMultipleFilesDialog(a.ctx, runtime.OpenDialogOptions{
 		//DefaultDirectory:           string,
@@ -49,7 +44,6 @@ func (a *App) OpenFiles() []string {
 		TreatPackagesAsDirectories: false,
 	})
 	if err != nil {
-		fmt.Println(err)
 		return nil
 	}
 	return filePath
@@ -73,62 +67,70 @@ func (a *App) OpenDir() string {
 	})
 
 	if err != nil {
-		fmt.Println(err)
 		return ""
 	}
 	return dirPath
 
 }
 
-func (a *App) Encrypt(path, userPW, ownerPW string) bool {
-	return true
+func (a *App) Encrypt(path, userPW, ownerPW string) error {
+	conf := model.NewAESConfiguration(userPW, ownerPW, 256)
+	err := api.EncryptFile(path, "", conf)
+
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-func (a *App) Decrypt(path string, pw string, owner bool) bool {
+func (a *App) Decrypt(path, pw string, owner bool) error {
+	var conf *model.Configuration
 
-	return true
+	if owner {
+		conf = model.NewAESConfiguration("", pw, 256)
+	} else {
+		conf = model.NewAESConfiguration(pw, "", 256)
+	}
+
+	err := api.DecryptFile(path, "", conf)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
-type PdfProperties struct {
-	IsEncrypted bool
-	CanView     bool // Is the document viewable without password?
-	NumPages    int
+type PDFInfo struct {
+	Exists    bool
+	Encrypted bool
+	Info      []string
 }
 
-func (a *App) GetPDFInfo(path string) (*PdfProperties, error) {
-	ret := PdfProperties{}
+func (a *App) GetPDFInfo(path string) (PDFInfo, error) {
+	ret := PDFInfo{
+		Exists:    true,
+		Encrypted: false,
+		Info:      nil,
+	}
+	conf := model.NewDefaultConfiguration()
+
+	//Check if file exists
 	f, err := os.Open(path)
 	if err != nil {
-		return nil, err
+		ret.Exists = false
 	}
 	defer f.Close()
-	pdfReader, err := model.NewPdfReader(f)
+	// Validate file
+	err = api.ValidateFile(path, conf)
 	if err != nil {
-		return nil, err
+		ret.Encrypted = true
 	}
-	isEncrypted, err := pdfReader.IsEncrypted()
+	// Get file info
+	info, err := api.InfoFile(path, nil, conf)
 	if err != nil {
-		return nil, err
+		ret.Info = nil
 	}
-	ret.IsEncrypted = isEncrypted
-	ret.CanView = true
-
-	// Try decrypting with an empty one.
-	if isEncrypted {
-		auth, err := pdfReader.Decrypt([]byte(""))
-		if err != nil {
-			return nil, err
-		}
-		ret.CanView = auth
-		return &ret, nil
-	}
-	numPages, err := pdfReader.GetNumPages()
-	if err != nil {
-		return nil, err
-	}
-	ret.NumPages = numPages
-
-	return &ret, nil
+	ret.Info = info
+	return ret, nil
 }
 
 func (a *App) GetOs() string {
