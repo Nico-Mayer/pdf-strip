@@ -5,6 +5,8 @@ export function Decrypt(arg1:string,arg2:string,arg3:boolean):Promise<boolean>;
 
 export function Encrypt(arg1:string,arg2:string,arg3:string):Promise<boolean>;
 
+export function GetOs():Promise<string>;
+
 export function GetPDFInfo(arg1:string):Promise<any>;
 
 export function Greet(arg1:string):Promise<string>;

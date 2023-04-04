@@ -2,6 +2,7 @@ package main
 
 import (
 	"embed"
+	"runtime"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
@@ -13,6 +14,18 @@ import (
 var assets embed.FS
 
 func main() {
+	os := runtime.GOOS
+	var frameless bool = true
+
+	switch os {
+	case "windows":
+		frameless = true
+	case "darwin":
+		frameless = false
+	case "linux":
+		frameless = true
+	}
+
 	// Create an instance of the app structure
 	app := NewApp()
 
@@ -24,7 +37,7 @@ func main() {
 		Height:    768,
 		MinWidth:  520,
 		MinHeight: 520,
-		Frameless: false,
+		Frameless: frameless,
 		Mac: &mac.Options{
 			TitleBar: mac.TitleBarHiddenInset(),
 		},

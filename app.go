@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	goruntime "runtime"
 
 	"github.com/unidoc/unipdf/v3/model"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
@@ -128,4 +129,8 @@ func (a *App) GetPDFInfo(path string) (*PdfProperties, error) {
 	ret.NumPages = numPages
 
 	return &ret, nil
+}
+
+func (a *App) GetOs() string {
+	return goruntime.GOOS
 }

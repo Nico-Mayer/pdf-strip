@@ -4,6 +4,7 @@
 		WindowToggleMaximise,
 		Quit,
 	} from '../../wailsjs/runtime/runtime'
+	import { os } from '$stores/store'
 
 	async function minimise() {
 		await WindowMinimise()
@@ -18,19 +19,24 @@
 
 <main style="--wails-draggable:drag" class="flex justify-between max-h-10">
 	<section class="p-2 w-80 bg-base-200" />
-	<section class="flex" style="--wails-draggable:no-drag">
-		<button class="menu-btn hover:bg-white/10" on:click={minimise}>
-			<div class="i-mdi-window-minimize" />
-		</button>
-		<button class="menu-btn hover:bg-white/10" on:click={toggleMaximise}>
-			<div class="i-mdi-window-maximize" />
-		</button>
-		<button
-			class="menu-btn hover:bg-red-500 hover:text-white"
-			on:click={quit}>
-			<div class="i-mdi-window-close" />
-		</button>
-	</section>
+
+	{#if $os === 'windows'}
+		<section class="flex" style="--wails-draggable:no-drag">
+			<button class="menu-btn hover:bg-white/10" on:click={minimise}>
+				<div class="i-mdi-window-minimize" />
+			</button>
+			<button
+				class="menu-btn hover:bg-white/10"
+				on:click={toggleMaximise}>
+				<div class="i-mdi-window-maximize" />
+			</button>
+			<button
+				class="menu-btn hover:bg-red-500 hover:text-white"
+				on:click={quit}>
+				<div class="i-mdi-window-close" />
+			</button>
+		</section>
+	{/if}
 </main>
 
 <style>

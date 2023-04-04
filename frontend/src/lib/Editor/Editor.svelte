@@ -2,21 +2,19 @@
 	import Breadcrumbs from './Breadcrumbs.svelte'
 	import { currentFile } from '$stores/store'
 	import { GetPDFInfo } from '$go/App'
+	import type { PdfProperties } from '$types'
 	import Compression from '$lib/Editor/Views/Compression/Compression.svelte'
 	import Encryption from '$lib/Editor/Views/Encryption/Encryption.svelte'
 
-	let isEncrypted = false
+	let info: PdfProperties = null
 	let container: HTMLElement
 
 	$: $currentFile, handelFileChange()
+	$: isEncrypted = info?.IsEncrypted
 
 	async function handelFileChange() {
-		await checkIfEncrypted()
-		container.scrollTop = 0
-	}
-
-	async function getInfos() {
 		info = await GetPDFInfo($currentFile.path)
+		container.scrollTop = 0
 	}
 </script>
 
@@ -28,7 +26,7 @@
 	<section class="flex items-cente gap-4 mb-2">
 		<div class="prose flex items-center gap-4">
 			<div class="indicator">
-				{#if isEncrypted}
+				{#if info?.IsEncrypted}
 					<div
 						class="i-mdi-shield-lock-outline bg-error h-4 w-4 indicator-item" />
 				{:else}
@@ -45,5 +43,5 @@
 
 	<Compression />
 	<div class="divider flex-shrink-0" />
-	<Encryption {isEncrypted} on:checkStatus={getInfos} />
+	<Encryption {isEncrypted} on:checkStatus={handelFileChange} />
 </main>

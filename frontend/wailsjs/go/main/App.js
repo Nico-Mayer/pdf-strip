@@ -10,6 +10,10 @@ export function Encrypt(arg1, arg2, arg3) {
   return window['go']['main']['App']['Encrypt'](arg1, arg2, arg3);
 }
 
+export function GetOs() {
+  return window['go']['main']['App']['GetOs']();
+}
+
 export function GetPDFInfo(arg1) {
   return window['go']['main']['App']['GetPDFInfo'](arg1);
 }

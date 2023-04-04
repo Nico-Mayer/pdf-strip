@@ -1,7 +1,9 @@
-import { writable } from 'svelte/store'
-import type { FileData, EditorOptions } from '$types'
+import type { EditorOptions, FileData } from '$types'
 import { getNameFromPath } from '$utils'
+import { writable } from 'svelte/store'
+import { GetOs } from '$go/App'
 
+export const os = writable(null)
 export const filePaths = createPathStore()
 export const currentFile = createCurrFileStore()
 export const editorOptions = writable<EditorOptions>({
@@ -67,3 +69,7 @@ function createCurrFileStore() {
 			} as FileData),
 	}
 }
+
+GetOs().then((res) => {
+	os.set(res)
+})
