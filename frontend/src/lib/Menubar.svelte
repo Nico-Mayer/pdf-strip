@@ -17,7 +17,7 @@
 	}
 </script>
 
-<main style="--wails-draggable:drag" class="flex justify-between max-h-10">
+<main style="--wails-draggable:drag" class="flex justify-between max-h-10 h-10">
 	<section class="p-2 w-80 bg-base-200" />
 
 	{#if $os === 'windows'}
