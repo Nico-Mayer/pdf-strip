@@ -24,37 +24,38 @@
 	}
 </script>
 
-{#if info && exists}
-	<main
-		class="px-4 flex-1 flex flex-col overflow-x-hidden overflow-y-auto pb-4 hide-scrollbar xl:max-w-7xl"
-		bind:this={container}>
-		<Breadcrumbs />
-
-		<section class="flex items-cente gap-4 mb-2">
-			<div class="prose flex items-center gap-4">
-				<div class="indicator">
-					{#if encrypted}
-						<div
-							class="i-mdi-shield-lock-outline bg-warning h-4 w-4 indicator-item" />
-					{:else}
-						<div
-							class="i-mdi-shield-lock-open-outline bg-success h-4 w-4 indicator-item" />
-					{/if}
-					<div class="i-mdi-file-pdf icon" />
-				</div>
-
-				<h1 class="text-3xl py-4">{$currentFile.name}</h1>
+<main
+	class="px-4 flex-1 flex flex-col overflow-x-hidden overflow-y-auto pb-4 hide-scrollbar xl:max-w-7xl"
+	bind:this={container}>
+	<Breadcrumbs />
+	<section class="flex items-cente gap-4 mb-2">
+		<div class="prose flex items-center gap-4">
+			<div class="indicator">
+				{#if encrypted}
+					<div
+						class="i-mdi-shield-lock-outline bg-warning h-4 w-4 indicator-item" />
+				{:else}
+					<div
+						class="i-mdi-shield-lock-open-outline bg-success h-4 w-4 indicator-item" />
+				{/if}
+				<div class="i-mdi-file-pdf icon" />
 			</div>
-			<div class="flex items-center" />
-		</section>
 
-		<Compression />
-		<div class="divider flex-shrink-0" />
-		<Encryption {encrypted} on:checkStatus={handelFileChange} />
-	</main>
-{:else}
-	<main class="w-full p-2">
-		<div class="alert alert-error shadow-lg">
+			<h1 class="text-3xl py-4">{$currentFile.name}</h1>
+		</div>
+		<div class="flex items-center" />
+	</section>
+
+	{#if info && exists && !encrypted}
+		<section>
+			<Compression />
+			<div class="divider flex-shrink-0" />
+			<Encryption {encrypted} on:checkStatus={handelFileChange} />
+		</section>
+	{:else if exists && encrypted}
+		<section>Encrypted</section>
+	{:else}
+		<section class="alert alert-error shadow-lg">
 			<div>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -72,6 +73,6 @@
 			<div>
 				<span class="badge">{$currentFile.path}</span>
 			</div>
-		</div>
-	</main>
-{/if}
+		</section>
+	{/if}
+</main>
