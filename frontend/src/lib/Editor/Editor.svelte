@@ -1,16 +1,18 @@
 <script lang="ts">
 	import Breadcrumbs from './Breadcrumbs.svelte'
 	import { currentFile } from '$stores/store'
-	import { IsEncrypted } from '$go/App'
+	import { GetPDFInfo } from '$go/App'
 	import Compression from '$lib/Editor/Views/Compression/Compression.svelte'
 	import Encryption from '$lib/Editor/Views/Encryption/Encryption.svelte'
 
 	let isEncrypted = false
+	let info = null
 
-	$: $currentFile, checkIfEncrypted()
+	$: $currentFile, getInfos()
+	$: console.log(info)
 
-	async function checkIfEncrypted() {
-		isEncrypted = await IsEncrypted($currentFile.path)
+	async function getInfos() {
+		info = await GetPDFInfo($currentFile.path)
 	}
 </script>
 
@@ -38,5 +40,5 @@
 
 	<Compression />
 	<div class="divider flex-shrink-0" />
-	<Encryption {isEncrypted} on:checkStatus={checkIfEncrypted} />
+	<Encryption {isEncrypted} on:checkStatus={getInfos} />
 </main>
