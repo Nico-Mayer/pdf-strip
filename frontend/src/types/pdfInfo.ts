@@ -1,5 +1,6 @@
 export interface PdfInfo {
 	Exists: boolean
 	Encrypted: boolean
-	Info: string[]
+	Size: number
+	Info: Record<string, string>
 }

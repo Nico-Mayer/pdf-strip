@@ -9,6 +9,7 @@ export const currentFile = createCurrFileStore()
 export const editorOptions = writable<EditorOptions>({
 	encryptionOpen: false,
 	compressionOpen: false,
+	detailsOpen: false,
 })
 
 function createPathStore() {

@@ -15,7 +15,9 @@
 		"frontend/dist": true,
 		"frontend/package.json.md5": true,
 		"frontend/node_modules": true,
-		"go.mod": true
+		"go.mod": true,
+		"frontend/wailsjs": true,
+		"frontend/src/vite-env.d.ts": true
 	},
 	"hide-files.files": [
 		"build",
@@ -23,7 +25,9 @@
 		"frontend/dist",
 		"frontend/package.json.md5",
 		"frontend/node_modules",
-		"go.mod"
+		"go.mod",
+		"frontend/wailsjs",
+		"frontend/src/vite-env.d.ts"
 	],
 	"cSpell.words": [
 		"assetserver",
@@ -32,6 +36,8 @@
 		"goruntime",
 		"Maximise",
 		"minimise",
+		"Modificationdate",
+		"Pagecount",
 		"pdfcpu",
 		"unidoc",
 		"unipdf",
