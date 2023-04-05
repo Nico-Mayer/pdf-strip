@@ -27,7 +27,7 @@
 </script>
 
 <main
-	class="px-4 flex-1 flex flex-col overflow-x-hidden overflow-y-auto pb-4 hide-scrollbar xl:max-w-7xl"
+	class="px-4 flex-1 flex flex-col overflow-y-auto pb-4 xl:max-w-7xl"
 	bind:this={container}>
 	<Breadcrumbs />
 	<section class="flex items-cente gap-4">
@@ -43,7 +43,9 @@
 				<div class="i-mdi-file-pdf icon" />
 			</div>
 
-			<h1 class="text-3xl py-4">{$currentFile.name}</h1>
+			<h1 class="text-3xl py-4">
+				{$currentFile.name}
+			</h1>
 		</div>
 		<div class="flex items-center" />
 	</section>

@@ -13,4 +13,9 @@ export default {
 		}),
 		require('@tailwindcss/typography'),
 	],
+
+	daisyui: {
+		themes: ['winter', 'dark'],
+		darkTheme: 'dark',
+	},
 }
