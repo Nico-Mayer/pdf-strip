@@ -77,15 +77,14 @@ PDF Strip is planned to be released on various package managers in the future, b
 
 PDF Strip offers a range of practical features designed to streamline your PDF management tasks, all within a user-friendly interface:
 
--   Cross-platform compatibility: Works seamlessly on Windows, macOS, and Linux
--   Local PDF editing: Modify and optimize your PDFs without downloading additional copies
--   File compression: Reduce file size while maintaining quality for efficient sharing and storage
--   File security: Safeguard your documents with encryption and password protection
--   File management: Merge, split, and extract content from PDF files with ease
--   Format conversion: Convert PDFs to other formats, such as Word, Excel, and Image
--   Metadata management: Add, remove, or modify PDF metadata effortlessly
--   Customization: Apply watermarks and annotations to personalize your documents
--   Offline accessibility: Manage your PDFs anytime, anywhere, without relying on a browser
+-   [x] 🖥️ Cross-platform compatibility: Works seamlessly on Windows, macOS, and Linux
+-   [x] 💿 Local PDF editing: Modify and optimize your PDFs without downloading additional copies
+-   [x] 💾 File compression: Reduce file size while maintaining quality for efficient sharing and storage
+-   [x] 🔐 File security: Safeguard your documents with encryption and password protection
+-   [ ] File management: Merge, split, and extract content from PDF files with ease
+-   [ ] Format conversion: Convert PDFs to other formats, such as Word, Excel, and Image
+-   [ ] Metadata management: Add, remove, or modify PDF metadata effortlessly
+-   [ ] Customization: Apply watermarks and annotations to personalize your documents
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
