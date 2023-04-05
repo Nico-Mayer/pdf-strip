@@ -28,11 +28,13 @@
   </p>
 </div>
 
+> PDF Strip is currently in its Alpha phase, and the 1.0 Beta Release will be made available in the near future.
+
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
-<!-- [![PDF Strip Screen Shot][product-screenshot]](https://example.com) -->
+![PDF Strip Screen Shot][product-screenshot]
 
 Simplify your PDF experience with this cross-platform desktop app, designed to provide secure and efficient local file management. Edit and optimize your PDFs without unnecessary downloads, and enjoy the convenience of offline accessibility – all without relying on a browser.
 
@@ -121,6 +123,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 -   [svelte](https://svelte.dev/)
 -   [wails](https://wails.io/)
+-   [pdfcpu](https://pdfcpu.io/)
 -   [daisyUI](https://daisyui.com/)
 -   [tailwind](https://tailwindcss.com/)
 
@@ -139,7 +142,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [issues-url]: https://github.com/Nico-Mayer/PDF-Strip/issues
 [license-shield]: https://img.shields.io/github/license/Nico-Mayer/PDF-Strip.svg?style=for-the-badge
 [license-url]: https://github.com/Nico-Mayer/PDF-Strip/blob/master/LICENSE.txt
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: frontend/src/assets/images/app.png
 [svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
 [svelte-url]: https://svelte.dev/
 [wails.dev]: https://img.shields.io/badge/Go-4A4A55?style=for-the-badge&logo=go&logoColor=29BEB0
