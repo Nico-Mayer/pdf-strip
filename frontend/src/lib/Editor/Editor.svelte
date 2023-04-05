@@ -53,7 +53,7 @@
 	{#if info && exists && !encrypted}
 		<Info {info} />
 		<section class="flex flex-col gap-4">
-			<Compression />
+			<Compression on:checkStatus={handelFileChange} />
 			<Encryption on:checkStatus={handelFileChange} />
 		</section>
 	{:else if exists && encrypted}

@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"os"
 	goruntime "runtime"
 	"strings"
@@ -26,6 +27,15 @@ func NewApp() *App {
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 
+}
+
+type Info map[string]interface{}
+
+type PDFInfo struct {
+	Exists    bool
+	Encrypted bool
+	Size      int64
+	Info      Info
 }
 
 func (a *App) OpenFiles() []string {
@@ -100,15 +110,6 @@ func (a *App) Decrypt(path, pw string, owner bool) error {
 	return nil
 }
 
-type Info map[string]interface{}
-
-type PDFInfo struct {
-	Exists    bool
-	Encrypted bool
-	Size      int64
-	Info      Info
-}
-
 func (a *App) GetPDFInfo(path string) (PDFInfo, error) {
 	conf := model.NewDefaultConfiguration()
 	ret := PDFInfo{
@@ -167,4 +168,16 @@ func formatInfo(input []string) Info {
 	}
 
 	return ret
+}
+
+func (a *App) Compress(path, outPath string, level int) error {
+	conf := model.NewDefaultConfiguration()
+	fmt.Println(outPath)
+
+	err := api.OptimizeFile(path, outPath, conf)
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+	return nil
 }

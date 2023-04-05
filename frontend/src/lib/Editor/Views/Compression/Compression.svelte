@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { editorOptions } from '$stores/store'
-	import { OpenDir } from '$go/App'
+	import { OpenDir, Compress } from '$go/App'
+	import { currentFile, os } from '$stores/store'
+	import { createEventDispatcher } from 'svelte'
+	import { toast } from 'svelte-french-toast'
 
+	const dispatch = createEventDispatcher()
 	let compressionLevel = 25
 	let saveAsCopy = false
 	let safeTo = ''
@@ -20,6 +24,27 @@
 	async function chooseDir() {
 		const path = await OpenDir()
 		safeTo = path
+	}
+	async function handleCompress() {
+		let separator = $os === 'windows' ? '\\' : '/'
+		try {
+			let outPath = $currentFile.path
+
+			if (saveAsCopy) {
+				const newName = $currentFile.name.replace(
+					'.pdf',
+					'_compressed.pdf'
+				)
+				outPath = `${safeTo}${separator}${newName}`
+			}
+
+			await Compress($currentFile.path, outPath, 3)
+			dispatch('checkStatus')
+			toast.success('Compression successful')
+		} catch (error) {
+			console.log(error)
+			toast.error('Compression failed')
+		}
 	}
 </script>
 
@@ -76,7 +101,12 @@
 					bind:value={safeTo} />
 			</div>
 
-			<button class="btn" disabled={!submittable}> Compress </button>
+			<button
+				class="btn"
+				disabled={!submittable}
+				on:click={handleCompress}>
+				Compress
+			</button>
 		</section>
 	</div>
 </div>
