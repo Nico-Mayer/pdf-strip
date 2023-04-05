@@ -15,8 +15,7 @@
 		"frontend/wailsjs": true,
 		"frontend/node_modules": true,
 		"frontend/dist": true,
-		"frontend/package.json.md5": true,
-		"build": true
+		"frontend/package.json.md5": true
 	},
 	"hide-files.files": [
 		".vscode",
@@ -24,8 +23,7 @@
 		"frontend/wailsjs",
 		"frontend/node_modules",
 		"frontend/dist",
-		"frontend/package.json.md5",
-		"build"
+		"frontend/package.json.md5"
 	],
 	"cSpell.words": [
 		"assetserver",
