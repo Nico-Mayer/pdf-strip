@@ -12,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="./frontend/src/assets/images/logo.svg" alt="Logo" width="90" height="90">
   </a>
 
   <h3 align="center">PDF Strip</h3>
@@ -32,7 +32,7 @@
 
 ## About The Project
 
-[![PDF Strip Screen Shot][product-screenshot]](https://example.com)
+<!-- [![PDF Strip Screen Shot][product-screenshot]](https://example.com) -->
 
 Simplify your PDF experience with this cross-platform desktop app, designed to provide secure and efficient local file management. Edit and optimize your PDFs without unnecessary downloads, and enjoy the convenience of offline accessibility – all without relying on a browser.
 

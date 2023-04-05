@@ -10,24 +10,22 @@
 		"**/.project": true,
 		"**/.settings": true,
 		"**/.factorypath": true,
-		"build": true,
 		".vscode": true,
-		"frontend/dist": true,
-		"frontend/package.json.md5": true,
-		"frontend/node_modules": true,
 		"go.mod": true,
 		"frontend/wailsjs": true,
-		"frontend/src/vite-env.d.ts": true
+		"frontend/node_modules": true,
+		"frontend/dist": true,
+		"frontend/package.json.md5": true,
+		"build": true
 	},
 	"hide-files.files": [
-		"build",
 		".vscode",
-		"frontend/dist",
-		"frontend/package.json.md5",
-		"frontend/node_modules",
 		"go.mod",
 		"frontend/wailsjs",
-		"frontend/src/vite-env.d.ts"
+		"frontend/node_modules",
+		"frontend/dist",
+		"frontend/package.json.md5",
+		"build"
 	],
 	"cSpell.words": [
 		"assetserver",
